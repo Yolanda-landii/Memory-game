@@ -27,11 +27,11 @@ This project is a simple Memory Game implemented using HTML, CSS, and JavaScript
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/your-username/memory-game.git
+    git clone https://github.com/your-username/Memory-game.git
     ```
 2. Navigate to the project directory:
     ```sh
-    cd memory-game
+    cd Memory-game
     ```
 3. Open `index.html` in your web browser to play the game.
 
