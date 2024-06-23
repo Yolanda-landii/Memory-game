@@ -32,26 +32,30 @@ function initGame() {
 
 function buildTile(letter) {
     const element = document.createElement("div");
-
     element.classList.add("tile");
     element.setAttribute("data-letter", letter);
     element.setAttribute("data-revealed", "false");
 
+    const frontFace = document.createElement("div");
+    frontFace.classList.add("front");
+    frontFace.textContent = "";
+
+    const backFace = document.createElement("div");
+    backFace.classList.add("back");
+    backFace.textContent = letter;
+
+    element.appendChild(frontFace);
+    element.appendChild(backFace);
+
     element.addEventListener("click", () => {
         const revealed = element.getAttribute("data-revealed");
 
-        if (
-            awaitingEndOfMove ||
-            revealed === "true" ||
-            element === activeTile
-        ) {
+        if (awaitingEndOfMove || revealed === "true" || element === activeTile) {
             return;
         }
 
         // Reveal this letter
-        element.textContent = letter;
-        element.style.backgroundColor = "#fff";
-        element.style.color = "#333";
+        element.classList.add("revealed");
 
         if (!activeTile) {
             activeTile = element;
@@ -78,12 +82,8 @@ function buildTile(letter) {
         awaitingEndOfMove = true;
 
         setTimeout(() => {
-            activeTile.textContent = "";
-            activeTile.style.backgroundColor = "#333";
-            activeTile.style.color = "transparent";
-            element.textContent = "";
-            element.style.backgroundColor = "#333";
-            element.style.color = "transparent";
+            activeTile.classList.remove("revealed");
+            element.classList.remove("revealed");
 
             awaitingEndOfMove = false;
             activeTile = null;
